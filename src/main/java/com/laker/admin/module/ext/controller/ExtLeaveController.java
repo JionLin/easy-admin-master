@@ -2,36 +2,24 @@ package com.laker.admin.module.ext.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.date.DateUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.laker.admin.framework.aop.metrics.Metrics;
-import com.laker.admin.framework.aop.trace.LakerTrace;
-import com.laker.admin.framework.aop.trace.SpanType;
-import com.laker.admin.framework.aop.trace.TraceCodeBlock;
 import com.laker.admin.framework.ext.thread.EasyAdminMDCThreadPoolExecutor;
 import com.laker.admin.framework.model.PageResponse;
 import com.laker.admin.framework.model.Response;
-import com.laker.admin.framework.utils.EasyAdminSecurityUtils;
 import com.laker.admin.module.ext.entity.ExtLeave;
 import com.laker.admin.module.ext.service.IExtLeaveService;
-import com.laker.admin.module.flow.process.BaseFlowController;
-import com.laker.admin.module.flow.process.SnakerEngineFacets;
 import com.laker.admin.module.sys.service.ISysUserService;
 import io.swagger.annotations.ApiOperation;
-import org.snaker.engine.SnakerEngine;
-import org.snaker.engine.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -44,56 +32,12 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/ext/leave")
 @Metrics
-public class ExtLeaveController extends BaseFlowController {
+public class ExtLeaveController{
     @Autowired
     IExtLeaveService extLeaveService;
     @Autowired
-    private SnakerEngineFacets snakerEngineFacets;
-    @Autowired
     private ISysUserService sysUserService;
     ThreadPoolExecutor pool = new EasyAdminMDCThreadPoolExecutor(5,5,"laker");
-
-    @GetMapping
-    @ApiOperation(value = "分页查询")
-    @LakerTrace(spanType = SpanType.Controller)
-    public PageResponse pageAll(@RequestParam(required = false, defaultValue = "1") long page,
-                                @RequestParam(required = false, defaultValue = "10") long limit) {
-        Page roadPage = new Page<>(page, limit);
-        LambdaQueryWrapper<ExtLeave> queryWrapper = new QueryWrapper().lambda();
-        queryWrapper.orderByDesc(ExtLeave::getCreateTime);
-//        Page pageList = extLeaveService.page(roadPage, queryWrapper);
-        IPage pageList = TraceCodeBlock.trace("leaveService.page",
-                () -> extLeaveService.page(roadPage, queryWrapper));
-
-        List<ExtLeave> records = pageList.getRecords();
-        records.forEach(extLeave -> {
-            extLeave.setCreateUser(sysUserService.getUserAndDeptById(extLeave.getCreateBy()));
-            this.setFlowStatusInfo(extLeave);
-
-        });
-
-        pool.execute(() -> {
-            TraceCodeBlock.trace("6666666666666666",value -> {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-        });
-
-        pool.submit(() -> {
-           TraceCodeBlock.trace("1231233",value -> {
-               try {
-                   TimeUnit.MILLISECONDS.sleep(300);
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-           });
-        });
-        sysUserService.getUserDataPowers(StpUtil.getLoginIdAsLong());
-        return PageResponse.ok(records, pageList.getTotal());
-    }
 
     /**
      * 暂时是为了测试 多表查询别名情况的数据权限过滤。
@@ -128,9 +72,7 @@ public class ExtLeaveController extends BaseFlowController {
             // 总经理岗位的人   去用户表查询当前登录人同部门 and 岗位 = 总经理
             args.put("user3", "18");
             args.put("day", param.getLeaveDay());
-            args.put(SnakerEngine.ID, EasyAdminSecurityUtils.getCurrentUserInfo().getNickName() + "-" + DateUtil.now() + "的请假申请");
-            Order leave = snakerEngineFacets.startAndExecute("leave", 2, StpUtil.getLoginIdAsString(), args);
-            param.setOrderId(leave.getId());
+
             extLeaveService.saveOrUpdate(param);
         } else {
             extLeaveService.saveOrUpdate(param);
