@@ -274,3 +274,13 @@ web
 **微信公众号** : **李哥聊架构**
 
 ![](https://oscimg.oschina.net/oscnet/up-fadd81a96306d5a18f245dcd44d7d545b8a.png)
+
+### tianjia添加
+config 配置   
+    ScheduleConfig 定时任务 去掉
+framework 待续
+module
+    chat 私聊聊天的 去掉
+    ext 去除
+    flow.process 去掉
+utils  不需要改动
