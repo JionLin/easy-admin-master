@@ -279,6 +279,7 @@ web
 config 配置   
     ScheduleConfig 定时任务 去掉
 framework 待续
+    ext 目录下的 待处理
 module
     chat 私聊聊天的 去掉
     ext 去除
