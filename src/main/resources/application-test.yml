@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    username: root
+    password: Jl13145904403
+    url: jdbc:mysql://119.23.105.21:3306/mangaman?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 5
+      max-active: 20
+      test-on-borrow: true
+      validation-query: select 1
+  redis:
+    host: 119.23.105.21
+    port: 6379
+    password: redis20240308
+    timeout: 30s
+    autoconfigure:
+      exclude: org.springframework.boot.actuate.autoconfigure.metrics.web.tomcat.TomcatMetricsAutoConfiguration
+  lock:
+    type: mysql
+  ratelimit:
+    type: local
+
+
+knife4j:
+  # 是否生产环境 屏蔽所有资源接口
+  production: false
+
+druid:
+  monitor: false
+# 测试环境不需要
+management:
+  health:
+    redis:
+      enabled: false
+  metrics:
+    export:
+      influx:
+        enabled: false
+        password: 12345678
+        user-name: laker
+
+# 阿里云短信问题 LTAI5tDRt6p4rjWUef/ucA8c0iMywtBbMzeHcHjda
+sms:
+  accessId: WE
+  accessKey: WE
+  signName: 漫画网址
+  codeTemplate: SMS_465407890
+  product: Dysmsapi
+  domain: dysmsapi.aliyuncs.com
+
+#默认7天登录有效(根据业务更改)
+token:
+  validTime: 7
+  expirationSeconds: 7200
