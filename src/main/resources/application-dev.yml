@@ -40,3 +40,17 @@ management:
         enabled: false
         password: 12345678
         user-name: laker
+
+# 阿里云短信问题
+sms:
+  accessId: XX
+  accessKey: XX2
+  signName: 漫画网址
+  codeTemplate: SMS_465407890
+  product: Dysmsapi
+  domain: dysmsapi.aliyuncs.com
+
+#默认7天登录有效(根据业务更改)
+token:
+  validTime: 7
+  expirationSeconds: 7200
