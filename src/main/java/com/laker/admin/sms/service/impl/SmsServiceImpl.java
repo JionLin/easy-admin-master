@@ -15,8 +15,9 @@ import com.laker.admin.sms.util.JsonResult;
 import com.laker.admin.sms.util.Result;
 import com.laker.admin.sms.util.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -52,14 +53,11 @@ public class SmsServiceImpl implements SmsService {
     @Value("${sms.domain}")
     private String domain;
 
-    // @Autowired
-    // private RedisUtil redisService;
 
-    private RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
-    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
+
 
     /**
      * 根据用户输入的phone发送验证码
@@ -85,7 +83,7 @@ public class SmsServiceImpl implements SmsService {
         try {
             sendSmsResponse = send(phone, signName, codeTemplate, smsJson);
             log.info("获取的短信信息参数为：{}",  com.alibaba.fastjson.JSON.toJSONString(sendSmsResponse));
-        } catch (ClientException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("短信验证码发送失败");
             return JsonResult.error(ResultEnum.FAILURE, "短信验证码发送失败");
@@ -102,8 +100,7 @@ public class SmsServiceImpl implements SmsService {
 
     //将验证码缓存到redis中，10分钟过后自动清除该缓存
     private void redisCode(Sms sms) {
-        // redisService.set(sms.getPhone(), sms, 600);
-        redisTemplate.opsForValue().set(sms.getPhone(), sms, 600, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(sms.getPhone(), sms.getCode(), 600, TimeUnit.SECONDS);
     }
 
     //随机生成6位数的短信码
@@ -119,15 +116,13 @@ public class SmsServiceImpl implements SmsService {
 
     //判断验证功发送时候频繁
     private boolean isSendOfen(String phone) {
-        // if (redisService.get(phone) == null) {
-        if ( redisTemplate.opsForValue().get(phone) == null) {
+        if (redisTemplate.opsForValue().get(phone) == null) {
             return false;
         } else {
             //判断上一次记录的时间和当前时间进行对比，如果两次相隔时间小于120s，视为短信发送频繁
-            // Sms sms = (Sms) redisService.get(phone);
-            Sms sms = (Sms) redisTemplate.opsForValue().get(phone);
-            //两次发送短信中间至少有2分钟的间隔时间
-            if (sms.getTime() + 120 * 1000 >= System.currentTimeMillis()) {
+            Long expire = redisTemplate.getExpire(phone, TimeUnit.SECONDS);
+            // 两次发送短信中间至少有2分钟的间隔时间
+            if (expire + 120 * 1000 >= System.currentTimeMillis()) {
                 return true;
             }
             return false;
@@ -144,16 +139,14 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public boolean validSmsCode(String phone, String code) {
         //取出所有有关该手机号的短信验证码
-        // if (redisService.get(phone) == null) {
         if (redisTemplate.opsForValue().get(phone) == null) {
             System.out.println("短信验证失败");
             return false;
         }
-        Sms sms = (Sms) redisTemplate.opsForValue().get(phone);
-        if (sms.getCode().equals(code)) {
+        String saveCode = redisTemplate.opsForValue().get(phone);
+        if (saveCode.equals(code)) {
             System.out.println("短信验证成功");
             //删除掉该redis
-            // redisService.delete(phone);
             redisTemplate.opsForValue().getOperations().delete(phone);
             return true;
         }

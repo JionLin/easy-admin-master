@@ -21,17 +21,6 @@ server:
   servlet:
     context-path: /
 spring:
-#  datasource:
-#    username: root
-#    password: root
-#    url: jdbc:mysql://localhost:3306/laker?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    druid:
-#      initial-size: 1
-#      min-idle: 5
-#      max-active: 20
-#      test-on-borrow: true
-#      validation-query: select 1
   profiles:
     # maven启用的profile，默认是local
     active: dev
@@ -51,8 +40,8 @@ mybatis-plus:
   # 支持统配符 * 或者 ; 分割
   typeEnumsPackage: com.laker.admin.module.enums
   # 配置日志 #仅控制台输出的日志
-  #  configuration:
-  #  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 knife4j:
   # 开启增强
   enable: true

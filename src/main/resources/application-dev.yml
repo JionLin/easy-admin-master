@@ -41,10 +41,10 @@ management:
         password: 12345678
         user-name: laker
 
-# 阿里云短信问题
+# 阿里云短信问题 LTAI5tDRt6p4rjWUefbWFcFw/xx
 sms:
-  accessId: XX
-  accessKey: XX2
+  accessId: xx
+  accessKey: xx
   signName: 漫画网址
   codeTemplate: SMS_465407890
   product: Dysmsapi

@@ -41,7 +41,7 @@ management:
         password: 12345678
         user-name: laker
 
-# 阿里云短信问题 LTAI5tDRt6p4rjWUef/ucA8c0iMywtBbMzeHcHjda
+# 阿里云短信问题 xx/ucA8c0iMywtBzmXFemYGbMzeHcHjda
 sms:
   accessId: WE
   accessKey: WE
