@@ -1,0 +1,25 @@
+package com.laker.admin.module.sys.enums;
+
+import com.baomidou.mybatisplus.annotation.EnumValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+/**
+ * @author johnny
+ * @Classname xx
+ * @Description
+ * @Date 2024/4/13 14:47
+ */
+@Getter
+@AllArgsConstructor
+public enum DataFilterTypeEnum {
+    ALL(1, "全部"),
+    DEPT(2, "本人所在组织机构"),
+    SELF(3, "本人"),
+    DEPT_SETS(4, "自定义组织机构"),
+    DIY(5, "自定义sql过滤");
+
+    @EnumValue
+    private final int type;
+    private final String desc;
+}

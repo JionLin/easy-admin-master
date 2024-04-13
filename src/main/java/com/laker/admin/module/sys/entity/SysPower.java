@@ -3,7 +3,7 @@ package com.laker.admin.module.sys.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.laker.admin.enums.DataFilterTypeEnum;
+import com.laker.admin.module.sys.enums.DataFilterTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
