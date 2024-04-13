@@ -2,7 +2,7 @@ package com.laker.admin.module.bus.pojo;
 
 import lombok.Data;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author johnny
@@ -13,49 +13,16 @@ import java.util.Date;
 @Data
 public class CollSave {
 
-    private Long id;
 
-
+    @NotNull
     private String name;
-
-
+    @NotNull
     private String type;
-
-
+    //封面
     private String cover;
-
+    // 简介
     private String introduction;
+    // 待发布
+    private String status = "10";
 
-    private String status;
-
-
-    private Long favoritesCount;
-
-    private Long readCount;
-
-    private Long monthlyTicketCount;
-
-
-    private Long commentsCount;
-
-
-    private Long complaintsCount;
-
-
-    private Long sharesCount;
-
-
-    private String isDeleted;
-
-
-    private Date createTime;
-
-
-    private Date updateTime;
-
-
-    private String creator;
-
-
-    private String updater;
 }
