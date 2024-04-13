@@ -1,5 +1,8 @@
-添加mybatis生成器
+1。添加mybatis生成器
     根据表 生成 sql 
+    如果需要使用,需要把父pom下 14/16/17/18 行放开
+
+2。 把utils类,enums 提取到com.laker.admin下 一级目录
 
 
 

@@ -1,4 +1,4 @@
-package com.laker.admin.sms.service.impl;
+package com.laker.admin.module.sms.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
@@ -9,11 +9,11 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.laker.admin.sms.entity.Sms;
-import com.laker.admin.sms.service.SmsService;
-import com.laker.admin.sms.util.JsonResult;
-import com.laker.admin.sms.util.Result;
-import com.laker.admin.sms.util.ResultEnum;
+import com.laker.admin.module.sms.service.SmsService;
+import com.laker.admin.module.sms.entity.Sms;
+import com.laker.admin.utils.JsonResult;
+import com.laker.admin.utils.Result;
+import com.laker.admin.utils.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

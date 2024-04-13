@@ -1,7 +1,7 @@
-package com.laker.admin.sms.controller;
+package com.laker.admin.module.sms.controller;
 
-import com.laker.admin.sms.service.SmsService;
-import com.laker.admin.sms.util.Result;
+import com.laker.admin.module.sms.service.SmsService;
+import com.laker.admin.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

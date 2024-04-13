@@ -1,4 +1,4 @@
-package com.laker.admin.sms.util;
+package com.laker.admin.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

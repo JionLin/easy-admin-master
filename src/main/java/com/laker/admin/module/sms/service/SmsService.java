@@ -1,7 +1,7 @@
-package com.laker.admin.sms.service;
+package com.laker.admin.module.sms.service;
 
 
-import com.laker.admin.sms.util.Result;
+import com.laker.admin.utils.Result;
 
 public interface SmsService {
     /**

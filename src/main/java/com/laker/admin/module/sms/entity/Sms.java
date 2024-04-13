@@ -1,4 +1,4 @@
-package com.laker.admin.sms.entity;
+package com.laker.admin.module.sms.entity;
 
 import lombok.Data;
 
