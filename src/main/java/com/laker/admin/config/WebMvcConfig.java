@@ -7,6 +7,7 @@ import com.laker.admin.framework.ext.mvc.CurrentUser;
 import com.laker.admin.framework.ext.mvc.PageRequestArgumentResolver;
 import com.laker.admin.framework.ext.mvc.StringToEnumConvertFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
 import org.springframework.format.FormatterRegistry;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -35,7 +35,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
             "/api/v1/login",
             "/captcha",
             "/thumbnail",
-            "/testSms/**"
+            "/testSms/**",
+            "/file/uploads"
     };
     private static final String[] trace_exclude_path = {"/admin/**",
             "/admin/login.html",
@@ -56,6 +57,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     /**
      * 注册sa-token的拦截器，打开注解式鉴权功能 (如果您不需要此功能，可以删除此类)
+     *  进行去除掉,进行测试功能
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -67,6 +69,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns(trace_exclude_path);
     }
 
+    // 2024-04-13 注释掉,关于文件保存问题
+   /*
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 配置静态资源，自定义虚拟磁盘功能
@@ -83,26 +87,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/" + path + "/**")
                 .addResourceLocations("file:" + file.getAbsolutePath() + "/");
     }
+    */
 
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        // 预先配置响应状态代码或视图以呈现响应主体。
-//        // 这在不需要自定义控制器逻辑的情况下很有用
-//        // @RequestMapping("/html1")
-//        //    public String html1(){
-//        //        return "index";
-//        //    }
-//        // ——例如呈现主页、执行简单的站点 URL 重定向、返回带有 HTML 内容的 404 状态、没有内容的 204 等等。
-////        registry.addViewController("/").setViewName("login");
-////        registry.addViewController("/login.html").setViewName("login");
-//    }
+    @Value("${files.upload.path}")
+    private String fileSavePath;
 
-//    @Override
-//    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//        // 内容协商
-//        // 设置默认的设置默认的ContentType
-//        configurer.defaultContentType(MediaType.APPLICATION_JSON);
-//    }
+    // 静态资源到处理 也就是图片到问题
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        /**
+         * 配置资源映射
+         * 意思是：如果访问的资源路径是以“/images/”开头的，
+         * 就给我映射到本机的“E:/images/”这个文件夹内，去找你要的资源
+         * 注意：E:/images/ 后面的 “/”一定要带上
+         */
+        registry.addResourceHandler("/uploadFile/**")
+                .addResourceLocations("file:"+fileSavePath);
+    }
+
 
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
