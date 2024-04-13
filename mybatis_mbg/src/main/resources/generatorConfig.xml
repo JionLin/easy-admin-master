@@ -15,19 +15,19 @@
                         userId="root"
                         password="root">
         </jdbcConnection>
-        <!-- javaBean的生成策略-->
-        <javaModelGenerator targetPackage="com.johnny.mybatis.pojo" targetProject="./src/main/java">
+        <!-- javaBean的生成策略 ok-->
+        <javaModelGenerator targetPackage="com.laker.admin.module.sys.pojo" targetProject="./src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!-- SQL映射文件的生成策略 -->
-        <sqlMapGenerator targetPackage="com.johnny.mybatis.mapper"
+        <sqlMapGenerator targetPackage="mapper.module.sms"
                          targetProject="./src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- Mapper接口的生成策略 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.johnny.mybatis.mapper" targetProject="./src/main/java">
+                             targetPackage="com.laker.admin.module.sys.mapper" targetProject="./src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 逆向分析的表 -->
