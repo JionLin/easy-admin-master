@@ -1,3 +1,9 @@
+添加mybatis生成器
+    根据表 生成 sql 
+
+
+
+
 # Easyadmin
 
 > **有用的话请鼓励❤️下作者，右上角☝️watch、star、fork三连点🙏🙏🙏一波**
