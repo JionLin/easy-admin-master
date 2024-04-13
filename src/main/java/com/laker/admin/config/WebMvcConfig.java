@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -95,6 +96,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
     // 静态资源到处理 也就是图片到问题
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        // 配置静态资源，自定义虚拟磁盘功能
+        File web = new File("web");
+        String path = lakerConfig.getOssFile().getPath();
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        log.info(file.getAbsolutePath());
+        registry.addResourceHandler("/admin/**")
+                .addResourceLocations("file:" + web.getAbsolutePath() + "/admin/");
+
+        registry.addResourceHandler("/" + path + "/**")
+                .addResourceLocations("file:" + file.getAbsolutePath() + "/");
+
         /**
          * 配置资源映射
          * 意思是：如果访问的资源路径是以“/images/”开头的，

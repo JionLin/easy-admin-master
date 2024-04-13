@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date 2024/4/13 12:12
  */
 @Data
-public class collSave {
+public class CollSave {
 
     private Long id;
 

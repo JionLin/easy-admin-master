@@ -1,14 +1,22 @@
 package com.laker.admin.module.bus.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
-@Data
-@ToString
-public class coll {
 
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class Coll {
+
+
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "dept_id", type = IdType.AUTO)
     private Long id;
 
 

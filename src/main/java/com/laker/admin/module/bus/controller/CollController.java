@@ -1,6 +1,6 @@
 package com.laker.admin.module.bus.controller;
 
-import com.laker.admin.module.bus.pojo.collSave;
+import com.laker.admin.module.bus.pojo.CollSave;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class CollController {
      * @return
      */
     @PostMapping("/save")
-    public String addColl(@RequestBody collSave collSave) {
+    public String addColl(@RequestBody CollSave collSave) {
 
         return null;
     }
