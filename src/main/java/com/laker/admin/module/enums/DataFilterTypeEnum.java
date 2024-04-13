@@ -1,4 +1,4 @@
-package com.laker.admin.module.sys.enums;
+package com.laker.admin.module.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
