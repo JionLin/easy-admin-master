@@ -244,6 +244,8 @@
         </dependency>
     </dependencies>
 
+
+
     <build>
         <!-- 打包后的启动jar名称 -->
         <finalName>easyAdmin</finalName>
@@ -275,6 +277,16 @@
                 </executions>
             </plugin>
         </plugins>
+
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <!--MAVEN打包选择运行环境-->

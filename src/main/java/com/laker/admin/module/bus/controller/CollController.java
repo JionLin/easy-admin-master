@@ -9,6 +9,7 @@ import com.laker.admin.framework.model.PageResponse;
 import com.laker.admin.framework.model.Response;
 import com.laker.admin.framework.utils.EasyAdminSecurityUtils;
 import com.laker.admin.module.bus.entity.Coll;
+import com.laker.admin.module.bus.pojo.CollCalculation;
 import com.laker.admin.module.bus.pojo.CollSave;
 import com.laker.admin.module.bus.pojo.CollUpdate;
 import com.laker.admin.module.bus.service.CollService;
@@ -130,10 +131,14 @@ public class CollController {
 
     // 收藏数 正常加1   阅读数 正常+1 月票数 +1  评论数 后台计算 吐槽数 +1  分享数 +1
     @PostMapping("/calculation")
-    public Response collCalculation(){
+    public Response collCalculation(@RequestBody CollCalculation collCalculation) {
+        int result = collService.updateColl(collCalculation);
+        if (result == 1) {
+            return Response.ok();
+        } else {
+            return Response.error("错误");
+        }
 
-
-        return null;
     }
 
 }
