@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -50,6 +52,8 @@ public class Coll extends Base{
 
 
     private String isDeleted;
+
+    private Date publishTime;
 
 
 }
