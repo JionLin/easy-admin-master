@@ -5,7 +5,6 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
@@ -60,10 +59,10 @@ public class LoginController {
     @ApiOperation(value = "登录")
     public Response login(@Validated @RequestBody LoginDto loginDto) {
         // 验证码是否正确
-        String code = iCache.get(loginDto.getUid());
+       /* String code = iCache.get(loginDto.getUid());
         if (!StrUtil.equalsIgnoreCase(code, loginDto.getCaptchaCode())) {
             return Response.error("500", "验证码不正确或已失效");
-        }
+        }*/
         // 单机版：在map中创建了会话，token id等映射关系 // 写入cookie
         SysUser sysUser = sysUserService.getOne(Wrappers.<SysUser>lambdaQuery()
                 .eq(SysUser::getUserName, loginDto.getUsername())
