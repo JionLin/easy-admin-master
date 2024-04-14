@@ -6,6 +6,7 @@ import com.laker.admin.framework.model.Response;
 import com.laker.admin.module.bus.entity.Coll;
 import com.laker.admin.module.bus.pojo.CollSave;
 import com.laker.admin.module.bus.service.CollService;
+import com.laker.admin.utils.UserAndDateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,13 +49,16 @@ public class CollController {
         }
         Coll coll=new Coll();
         BeanUtils.copyProperties(collSave,coll);
+        UserAndDateUtil.setCreateUserInfoAndDate(coll);
         // 3. 封面上传给到服务器
         boolean flag = collService.save(coll);
-        if (flag==true){
+        if (flag){
             return Response.ok();
         }else {
             return Response.error("save 错误");
         }
+
+
 
     }
 

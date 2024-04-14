@@ -1,5 +1,7 @@
 package com.laker.admin.module.bus.pojo;
 
+import com.laker.admin.constant.CommonConstant;
+import com.laker.admin.enums.CollStatusEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,9 @@ public class CollSave {
     // 简介
     private String introduction;
     // 待发布
-    private String status = "10";
+    private String status = CollStatusEnum.PENDING_RELEASE_STATUS.getCode();
+
+    // 未删除
+    private String isDeleted = CommonConstant.NOT_DELETED;
 
 }

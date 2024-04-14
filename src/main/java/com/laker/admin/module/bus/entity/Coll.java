@@ -6,19 +6,17 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("bus_coll")
-public class Coll {
+public class Coll extends Base{
 
 
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "dept_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
 
@@ -54,14 +52,4 @@ public class Coll {
     private String isDeleted;
 
 
-    private Date createTime;
-
-
-    private Date updateTime;
-
-
-    private String creator;
-
-
-    private String updater;
 }
