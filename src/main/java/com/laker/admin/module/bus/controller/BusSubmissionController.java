@@ -215,7 +215,7 @@ public class BusSubmissionController {
     }
 
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     @ApiOperation(value = "删除单个稿件")
     public Response collCalculation(@PathVariable("id") Long id) {
         BusSubmission byId = submissionService.getById(id);

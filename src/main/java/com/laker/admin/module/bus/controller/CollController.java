@@ -159,7 +159,7 @@ public class CollController {
     }
 
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     @ApiOperation(value = "删除单个合集")
     public Response deleteById(@PathVariable("id") Long id) {
         Coll byId = collService.getById(id);
