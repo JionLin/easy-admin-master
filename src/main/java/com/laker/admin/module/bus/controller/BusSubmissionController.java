@@ -112,13 +112,15 @@ public class BusSubmissionController {
             // 如果是修改,就需要把原先的进行删除
             if (deleteFlag) {
                 List<BusSubmissionImage> imageList = submissionImageService.getSubmissionId(submission.getId().intValue());
-                List<BusSubmissionImage> list = imageList.stream().map(
-                                e -> {
-                                    e.setIsDeleted(CommonConstant.DELETED);
-                                    return e;
-                                })
-                        .collect(Collectors.toList());
-                submissionImageService.saveOrUpdateBatch(list);
+                if (CollectionUtils.isNotEmpty(imageList)) {
+                    List<BusSubmissionImage> list = imageList.stream().map(
+                                    e -> {
+                                        e.setIsDeleted(CommonConstant.DELETED);
+                                        return e;
+                                    })
+                            .collect(Collectors.toList());
+                    submissionImageService.saveOrUpdateBatch(list);
+                }
             }
             submissionImageService.saveBatch(submissionImages);
         }
@@ -157,7 +159,6 @@ public class BusSubmissionController {
         }
         List<SubmissionImages> submissionImages = submissionUpdate.getSubmissionImages();
         if (CollectionUtils.isEmpty(submissionImages)) {
-            // url 未传递
             return Response.error("上传稿件路径为空");
         }
         List<String> url = submissionImages.stream().map(SubmissionImages::getUrl).collect(Collectors.toList());
