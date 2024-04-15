@@ -8,10 +8,12 @@ import com.laker.admin.enums.CollTypeEnums;
 import com.laker.admin.framework.model.PageResponse;
 import com.laker.admin.framework.model.Response;
 import com.laker.admin.framework.utils.EasyAdminSecurityUtils;
+import com.laker.admin.module.bus.entity.BusSubmission;
 import com.laker.admin.module.bus.entity.Coll;
 import com.laker.admin.module.bus.pojo.CollCalculation;
 import com.laker.admin.module.bus.pojo.CollSave;
 import com.laker.admin.module.bus.pojo.CollUpdate;
+import com.laker.admin.module.bus.service.BusSubmissionService;
 import com.laker.admin.module.bus.service.CollService;
 import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.ApiOperation;
@@ -22,8 +24,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author johnny
@@ -37,6 +41,9 @@ public class CollController {
 
     @Autowired
     private CollService collService;
+
+    @Autowired
+    private BusSubmissionService submissionService;
 
     /**
      * 新建合集
@@ -151,4 +158,28 @@ public class CollController {
         }
     }
 
+
+    @PostMapping("/delete/{id}")
+    @ApiOperation(value = "删除单个合集")
+    public Response deleteById(@PathVariable("id") Long id) {
+        Coll byId = collService.getById(id);
+        if (byId==null){
+            return Response.error("合集不存在");
+        }
+        // 查看合集下是否存在稿件
+        Long collId = byId.getId();
+        List<BusSubmission> submissionList=submissionService.selectListByCollId(collId);
+        if (CollectionUtils.isNotEmpty(submissionList)){
+            Collection<String> titles = submissionList.stream().map(e -> e.getTitle()).collect(Collectors.toList());
+            return Response.error("合集下存在对应的稿件,不能删除,标题有: "+titles);
+        }else {
+            byId.setIsDeleted(CommonConstant.DELETED);
+            boolean flag = collService.updateById(byId);
+            if (flag){
+                return Response.ok();
+            }else {
+                return Response.error("删除失败");
+            }
+        }
+    }
 }

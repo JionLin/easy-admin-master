@@ -3,6 +3,8 @@ package com.laker.admin.module.bus.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.laker.admin.module.bus.entity.BusSubmission;
 
+import java.util.List;
+
 /**
  * <p>
  * 稿件表 服务类
@@ -13,4 +15,5 @@ import com.laker.admin.module.bus.entity.BusSubmission;
  */
 public interface BusSubmissionService extends IService<BusSubmission> {
 
+    List<BusSubmission> selectListByCollId(Long collId);
 }

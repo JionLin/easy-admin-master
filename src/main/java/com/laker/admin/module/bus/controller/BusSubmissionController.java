@@ -215,4 +215,24 @@ public class BusSubmissionController {
     }
 
 
+    @PostMapping("/delete/{id}")
+    @ApiOperation(value = "删除单个稿件")
+    public Response collCalculation(@PathVariable("id") Long id) {
+        BusSubmission byId = submissionService.getById(id);
+        if (byId==null){
+            return Response.error("稿件不存在");
+        }
+        byId.setIsDeleted(CommonConstant.DELETED);
+        boolean flag = submissionService.updateById(byId);
+        if (flag){
+            return Response.ok();
+        }else {
+            return Response.error("删除失败");
+        }
+    }
+
+
+
+
+
 }
