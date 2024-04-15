@@ -149,7 +149,6 @@ public class CollController {
         } else {
             return Response.error("错误");
         }
-
     }
 
 }

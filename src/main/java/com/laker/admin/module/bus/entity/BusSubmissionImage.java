@@ -32,7 +32,7 @@ public class BusSubmissionImage extends Base {
     private String url;
 
     @ApiModelProperty(value = "顺序位置")
-    private Long position;
+    private Integer position;
 
     @ApiModelProperty(value = "是否删除 0- 已删除 1- 未删除")
     private String isDeleted;
