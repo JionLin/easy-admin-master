@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CollMapper extends BaseMapper<Coll> {
 
-    int updateColl(Coll coll);
 
 }

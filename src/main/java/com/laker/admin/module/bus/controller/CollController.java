@@ -132,8 +132,14 @@ public class CollController {
     // 收藏数 正常加1   阅读数 正常+1 月票数 +1  评论数 后台计算 吐槽数 +1  分享数 +1
     @PostMapping("/calculation")
     public Response collCalculation(@RequestBody CollCalculation collCalculation) {
-        int result = collService.updateColl(collCalculation);
-        if (result == 1) {
+        Coll byId = collService.getById(collCalculation.getId());
+        if (byId == null) {
+            return Response.error("合集不存在");
+        }
+        Coll param = CollCalculation.getCalculationParam(byId, collCalculation);
+        // 进行根据数据库里面的值,进行和前端给的值 相加
+        boolean result = collService.updateById(param);
+        if (result) {
             return Response.ok();
         } else {
             return Response.error("错误");
