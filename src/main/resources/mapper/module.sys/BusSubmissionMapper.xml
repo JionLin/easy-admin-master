@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laker.admin.module.bus.mapper.BusSubmissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.laker.admin.module.bus.entity.BusSubmission">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="summary" property="summary" />
+        <result column="coll_id" property="collId" />
+        <result column="coll_name" property="collName" />
+        <result column="cover" property="cover" />
+        <result column="status" property="status" />
+        <result column="number_of_chapter" property="numberOfChapter" />
+        <result column="read_count" property="readCount" />
+        <result column="monthly_ticket_count" property="monthlyTicketCount" />
+        <result column="favorites_count" property="favoritesCount" />
+        <result column="complaints_count" property="complaintsCount" />
+        <result column="shares_count" property="sharesCount" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="creator" property="creator" />
+        <result column="updater" property="updater" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, title, summary, coll_id, coll_name, cover, status, number_of_chapter, read_count, monthly_ticket_count, favorites_count, complaints_count, shares_count, is_deleted, create_time, update_time, creator, updater
+    </sql>
+
+</mapper>
