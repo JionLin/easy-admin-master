@@ -1,6 +1,7 @@
 package com.laker.admin.module.bus.pojo;
 
 import com.laker.admin.module.bus.entity.Coll;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 
@@ -9,18 +10,26 @@ import lombok.Data;
 public class CollCalculation {
 
 
+
+    @ApiModelProperty(value = "主键id")
     private Long id;
 
+    @ApiModelProperty(value = "收藏数,默认为0,可以不传递")
     private Long favoritesCount = 0L;
 
+    @ApiModelProperty(value = "阅读数 ,默认为0,可以不传递")
     private Long readCount = 0L;
 
+    @ApiModelProperty(value = "月票总数量 默认为0,可以不传递")
     private Long monthlyTicketCount = 0L;
 
+    @ApiModelProperty(value = "评论数 默认为0,可以不传递")
     private Long commentsCount = 0L;
 
+    @ApiModelProperty(value = "吐槽数量,默认为0,可以不传递")
     private Long complaintsCount = 0L;
 
+    @ApiModelProperty(value = "分享数,默认为0,可以不传递")
     private Long sharesCount = 0L;
 
     /**

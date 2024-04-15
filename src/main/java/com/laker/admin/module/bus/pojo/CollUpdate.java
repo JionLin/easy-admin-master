@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -14,16 +15,20 @@ import javax.validation.constraints.NotNull;
 public class CollUpdate {
 
     @NotNull
+    @ApiModelProperty(value = "主键id")
     private Long id;
 
+    @ApiModelProperty(value = "名字")
     private String name;
 
+    @ApiModelProperty(value = "类型 0-短篇 1-热血 2-情感 3-剧情 4-轻松 传递0/1/2/3/4")
     private String type;
-    //封面
+    @ApiModelProperty(value = "封面")
     private String cover;
-    // 简介
+
+    @ApiModelProperty(value = "简介")
     private String introduction;
 
-    // 未删除
-    private String isDeleted;
+    @ApiModelProperty(value = "是否删除 1未删除 0 删除")
+    private String isDeleted ;
 }

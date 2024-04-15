@@ -14,6 +14,7 @@ import com.laker.admin.module.bus.pojo.CollSave;
 import com.laker.admin.module.bus.pojo.CollUpdate;
 import com.laker.admin.module.bus.service.CollService;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,7 @@ public class CollController {
      * @return
      */
     @PostMapping("/save")
+    @ApiOperation(value = "合集保存")
     public Response addColl(@RequestBody @Valid CollSave collSave) {
         // 1. 名称不能为空,且不能重复
         String name = collSave.getName();
@@ -69,6 +71,7 @@ public class CollController {
     }
 
     @PostMapping("/update")
+    @ApiOperation(value = "合集更新")
     public Response updateColl(@RequestBody CollUpdate collUpdate) {
         Long userId = EasyAdminSecurityUtils.getCurrentUserInfo().getUserId();
         // 名称重复问题
@@ -113,6 +116,7 @@ public class CollController {
 
 
     @GetMapping("/list")
+    @ApiOperation(value = "合集列表")
     public PageResponse listColl(@RequestParam(required = false, value = "status", defaultValue = "") String status,
                                  @RequestParam(required = false, defaultValue = "1") long page,
                                  @RequestParam(required = false, defaultValue = "10") long limit) {
@@ -131,6 +135,7 @@ public class CollController {
 
     // 收藏数 正常加1   阅读数 正常+1 月票数 +1  评论数 后台计算 吐槽数 +1  分享数 +1
     @PostMapping("/calculation")
+    @ApiOperation(value = "合集计算")
     public Response collCalculation(@RequestBody CollCalculation collCalculation) {
         Coll byId = collService.getById(collCalculation.getId());
         if (byId == null) {
