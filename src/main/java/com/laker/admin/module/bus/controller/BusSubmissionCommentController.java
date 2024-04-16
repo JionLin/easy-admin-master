@@ -92,12 +92,12 @@ public class BusSubmissionCommentController {
      *
      * @return
      */
-    @ApiOperation("parCommentId 如果是评论下的第一级,那么传递0,如果不是,传递上一级的父id")
+    @ApiOperation("parCommentId 如果是稿件下的第一级,那么传递0,如果不是,传递上一级的父id")
     @GetMapping("/list/{submissionId}/{parCommentId}")
     public Response list(@PathVariable("submissionId")Long submissionId,
                          @PathVariable(value = "parCommentId") Long parCommentId) {
         // 根据集合id 查询所有,然后进行递归查询
-        List<BusSubmission> busSubmissions = submissionService.list(new QueryWrapper<BusSubmission>().eq("id", submissionId).
+        List<BusSubmissionComment> busSubmissions = submissionCommentService.list(new QueryWrapper<BusSubmissionComment>().eq("submission_id", submissionId).
                 eq("is_deleted", CommonConstant.NOT_DELETED));
         List<SubmissionCommentVo>  submissionCommentVos=new ArrayList<>();
         // 进行构造数据,构造多级参数
