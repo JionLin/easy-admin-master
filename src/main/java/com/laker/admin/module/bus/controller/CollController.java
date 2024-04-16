@@ -46,7 +46,7 @@ public class CollController {
     private BusSubmissionService submissionService;
 
     /**
-     * 新建合集
+     * 新建合集  EasyAdminSecurityUtils
      *
      * @return
      */

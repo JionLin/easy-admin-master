@@ -40,9 +40,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/busSubmission")
 public class BusSubmissionController {
-    // 保存
-    // 列表查询
-    //修改
+
 
     @Autowired
     private BusSubmissionService submissionService;
