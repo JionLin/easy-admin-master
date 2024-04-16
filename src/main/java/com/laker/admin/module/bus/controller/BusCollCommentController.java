@@ -67,7 +67,6 @@ public class BusCollCommentController {
      * @param id
      * @return
      */
-
     @DeleteMapping("/{id}")
     public Response saveCollCommentInfo(@PathVariable("id") Long id) {
         // 当前用户的评论 才可以自己删除
