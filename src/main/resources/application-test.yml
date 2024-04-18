@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: Jl13145904403
+    password: root
     url: jdbc:mysql://119.23.105.21:3306/mangaman?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
@@ -21,7 +21,13 @@ spring:
     type: mysql
   ratelimit:
     type: local
-
+  servlet:
+    multipart:
+      #上传的单个文件的最大大小 10m。
+      max-file-size: 10MB
+      # 多文件上传时文件的总大小 100m
+      max-request-size: 100MB
+      resolve-lazily: false
 
 knife4j:
   # 是否生产环境 屏蔽所有资源接口
@@ -41,10 +47,10 @@ management:
         password: 12345678
         user-name: laker
 
-# 阿里云短信问题 xx/ucA8c0iMywtBzmXFemYGbMzeHcHjda
+# 阿里云短信问题 LTAI5tDRt6p4rjWUefbWFcFw/xx
 sms:
-  accessId: WE
-  accessKey: WE
+  accessId: xx
+  accessKey: xx
   signName: 漫画网址
   codeTemplate: SMS_465407890
   product: Dysmsapi
@@ -54,3 +60,9 @@ sms:
 token:
   validTime: 7
   expirationSeconds: 7200
+
+# 本地文件路径
+files:
+  upload:
+    path: /Users/johnny/Downloads/manhua/
+
