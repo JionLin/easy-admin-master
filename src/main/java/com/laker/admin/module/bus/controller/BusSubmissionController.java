@@ -57,7 +57,7 @@ public class BusSubmissionController {
     public static final String SEPARATOR = ",";
 
     /**
-     * 新建合集
+     * 稿件表保存
      *
      * @return
      */

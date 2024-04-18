@@ -182,4 +182,11 @@ public class CollController {
             }
         }
     }
+
+    @ApiOperation("获取单个合集信息")
+    @RequestMapping("/info/{id}")
+    public Response info(@PathVariable("id") Long id){
+        Coll coll = collService.getById(id);
+        return Response.ok(coll);
+    }
 }

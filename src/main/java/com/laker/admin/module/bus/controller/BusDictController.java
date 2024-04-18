@@ -44,6 +44,17 @@ public class BusDictController {
 
     }
 
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{id}")
+    public Response info(@PathVariable("id") Long id){
+        BusDict dict = dictService.getById(id);
+
+        return Response.ok(dict);
+    }
+
+
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable("id") Long id){
         BusDict byId = dictService.getById(id);

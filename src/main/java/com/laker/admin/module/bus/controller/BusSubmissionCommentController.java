@@ -112,4 +112,14 @@ public class BusSubmissionCommentController {
         return Response.ok(vos);
     }
 
+    /**
+     * 单个
+     */
+    @RequestMapping("/info/{id}")
+    public Response info(@PathVariable("id") Long id){
+        BusSubmissionComment submissionComment = submissionCommentService.getById(id);
+        return Response.ok( submissionComment);
+    }
+
+
 }
