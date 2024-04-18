@@ -13,6 +13,7 @@ import com.laker.admin.module.bus.service.BusSubmissionCommentService;
 import com.laker.admin.module.bus.service.BusSubmissionService;
 import com.laker.admin.utils.TreeUtil;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
@@ -31,6 +32,7 @@ import java.util.List;
  * @author johnny
  * @since 2024-04-16
  */
+@Api(tags ="稿件评论表")
 @RestController
 @RequestMapping("/busSubmissionComment")
 public class BusSubmissionCommentController {
@@ -43,6 +45,7 @@ public class BusSubmissionCommentController {
     private BusSubmissionCommentService submissionCommentService;
 
     @PostMapping("/save")
+    @ApiOperation("保存稿件评论表")
     public Response saveSubmissionCommentInfo(@RequestBody @Valid SubmissionCommentSave commentSave) {
         Long collId = commentSave.getSubmissionId();
         BusSubmission busSubmission = submissionService.getOne(new QueryWrapper<BusSubmission>().
@@ -69,6 +72,7 @@ public class BusSubmissionCommentController {
      * @param id
      * @return
      */
+    @ApiOperation("当前用户的评论 才可以自己删除")
     @DeleteMapping("/{id}")
     public Response saveCollCommentInfo(@PathVariable("id") Long id) {
         // 当前用户的评论 才可以自己删除
@@ -115,7 +119,8 @@ public class BusSubmissionCommentController {
     /**
      * 单个
      */
-    @RequestMapping("/info/{id}")
+    @ApiOperation(value = "获取单个稿件评论评论")
+    @GetMapping("/info/{id}")
     public Response info(@PathVariable("id") Long id){
         BusSubmissionComment submissionComment = submissionCommentService.getById(id);
         return Response.ok( submissionComment);

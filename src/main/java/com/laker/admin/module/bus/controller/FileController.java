@@ -1,5 +1,7 @@
 package com.laker.admin.module.bus.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,8 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/file")
+
+@Api(tags ="文件上传,默认使用这个")
 public class FileController {
 
     @Value("${files.upload.path}")
@@ -31,6 +35,7 @@ public class FileController {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 
+    @ApiOperation("上传文件")
     @PostMapping("/uploads")
     public ArrayList upload(@RequestParam("uploadFiles") MultipartFile[] uploadFiles, HttpServletRequest req) {
         ArrayList<String> mylist = new ArrayList();

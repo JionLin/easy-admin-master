@@ -13,6 +13,7 @@ import com.laker.admin.module.bus.service.BusCollCommentService;
 import com.laker.admin.module.bus.service.CollService;
 import com.laker.admin.utils.TreeUtil;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
@@ -31,6 +32,7 @@ import java.util.List;
  * @author johnny
  * @since 2024-04-16
  */
+@Api(tags ="合集评论")
 @RestController
 @RequestMapping("/busCollComment")
 public class BusCollCommentController {
@@ -41,6 +43,7 @@ public class BusCollCommentController {
     @Autowired
     private CollService collService;
 
+    @ApiOperation(value ="保存评论")
     @PostMapping("/save")
     public Response saveCollCommentInfo(@RequestBody @Valid CollCommentSave commentSave) {
         Long collId = commentSave.getCollId();
@@ -67,6 +70,7 @@ public class BusCollCommentController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除评论,当前用户的评论 才可以自己删除")
     @DeleteMapping("/{id}")
     public Response saveCollCommentInfo(@PathVariable("id") Long id) {
         // 当前用户的评论 才可以自己删除

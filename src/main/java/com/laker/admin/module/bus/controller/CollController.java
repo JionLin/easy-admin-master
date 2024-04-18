@@ -16,6 +16,7 @@ import com.laker.admin.module.bus.pojo.CollUpdate;
 import com.laker.admin.module.bus.service.BusSubmissionService;
 import com.laker.admin.module.bus.service.CollService;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +38,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("/coll")
+@Api(tags ="合集表" )
 public class CollController {
 
     @Autowired
@@ -184,7 +186,7 @@ public class CollController {
     }
 
     @ApiOperation("获取单个合集信息")
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public Response info(@PathVariable("id") Long id){
         Coll coll = collService.getById(id);
         return Response.ok(coll);

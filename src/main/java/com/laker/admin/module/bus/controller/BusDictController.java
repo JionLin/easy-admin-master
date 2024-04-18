@@ -11,6 +11,8 @@ import com.laker.admin.module.bus.entity.BusDict;
 import com.laker.admin.module.bus.pojo.BusDictSave;
 import com.laker.admin.module.bus.service.BusDictService;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @author johnny
  * @since 2024-04-16
  */
+@Api(tags ="业务字典表")
 @RestController
 @RequestMapping("/busDict")
 public class BusDictController {
@@ -30,6 +33,7 @@ public class BusDictController {
     @Autowired
     private BusDictService dictService;
 
+    @ApiOperation("保存字典信息")
     @PostMapping("/save")
     public Response saveDict(@RequestBody BusDictSave busDictSave){
         BusDict entity=new BusDict();
@@ -47,7 +51,8 @@ public class BusDictController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{id}")
+    @ApiOperation(value = "获取对应的字典数据")
+    @GetMapping("/info/{id}")
     public Response info(@PathVariable("id") Long id){
         BusDict dict = dictService.getById(id);
 
@@ -55,6 +60,7 @@ public class BusDictController {
     }
 
 
+    @ApiOperation(value = "删除对应的字典数据")
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable("id") Long id){
         BusDict byId = dictService.getById(id);
@@ -71,6 +77,7 @@ public class BusDictController {
         }
     }
 
+    @ApiOperation(value = "字典列表")
     @GetMapping("/list")
     public PageResponse list(@RequestParam(required = false, defaultValue = "1") long page,
                              @RequestParam(required = false, defaultValue = "10") long limit){

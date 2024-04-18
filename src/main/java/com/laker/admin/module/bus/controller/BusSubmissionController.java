@@ -16,6 +16,7 @@ import com.laker.admin.module.bus.service.BusSubmissionImageService;
 import com.laker.admin.module.bus.service.BusSubmissionService;
 import com.laker.admin.module.bus.service.CollService;
 import com.laker.admin.utils.UserAndDateUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +38,7 @@ import java.util.stream.Collectors;
  * @author johnny
  * @since 2024-04-15
  */
+@Api(tags ="稿件表" )
 @RestController
 @RequestMapping("/busSubmission")
 public class BusSubmissionController {
@@ -126,8 +128,8 @@ public class BusSubmissionController {
     }
 
 
-    // 查询单个稿件数据
     @GetMapping("/{id}")
+    @ApiOperation("查询单个稿件数据")
     public Response getSubmission(@PathVariable("id") Integer id) {
         BusSubmission busSubmission = submissionService.getById(id);
         if (busSubmission == null) {
@@ -150,6 +152,7 @@ public class BusSubmissionController {
 
 
     @PostMapping("/update")
+    @ApiOperation("修改单个稿件数据")
     public Response update(@RequestBody SubmissionUpdate submissionUpdate) {
         BusSubmission busSubmission = submissionService.getById(submissionUpdate.getId());
         if (busSubmission == null) {
@@ -177,6 +180,7 @@ public class BusSubmissionController {
     }
 
     @GetMapping("/list")
+    @ApiOperation("稿件列表")
     public PageResponse list(@RequestParam(required = false, value = "status", defaultValue = "")
                                      String status,
                              @RequestParam(required = false, defaultValue = "1") long page,

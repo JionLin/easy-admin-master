@@ -1,6 +1,5 @@
 package com.laker.admin.module.sys.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -31,7 +30,7 @@ import java.time.LocalDateTime;
  * @author laker
  * @since 2022-02-21
  */
-@Api(tags = "文件管理")
+@Api(tags = "文件管理-暂时不用")
 @RestController
 @RequestMapping("/sys/file")
 public class SysFileController {
