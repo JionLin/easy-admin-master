@@ -36,8 +36,8 @@
             <outputDirectory>config</outputDirectory>
             <fileMode>0644</fileMode>
             <includes>
-                <!--                <include>application.yaml</include>-->
-                <include>application-${profileActive}.yaml</include>
+                                <include>application.yml</include>
+                <include>application-${profileActive}.yml</include>
                 <!--                <include>mapper/**/*.xml</include>-->
                 <!--                <include>static/**</include>-->
                 <!--                <include>templates/**</include>-->

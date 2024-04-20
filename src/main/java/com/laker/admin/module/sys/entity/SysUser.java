@@ -58,4 +58,12 @@ public class SysUser implements Serializable {
     private String roleIds;
 
 
+    /**
+     * 社交账号-微信
+     */
+    private String socialAccountWx;
+    /**
+     * 我的签名
+     */
+    private String signature;
 }

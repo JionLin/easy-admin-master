@@ -11,11 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>easy-admin</artifactId>
-<!--    <packaging>pom</packaging>-->
     <version>1.0.0</version>
-<!--    <modules>-->
-<!--        <module>mybatis_mbg</module>-->
-<!--    </modules>-->
+
 
     <properties>
         <!-- 1.编译器和JRE的版本默认为1.5,强制指定为1.8 -->
@@ -283,15 +280,6 @@
             </plugin>
         </plugins>
 
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 
     <!--MAVEN打包选择运行环境-->
@@ -321,27 +309,5 @@
         </profile>
     </profiles>
 
-    <repositories>
-        <!-- https://developer.aliyun.com/mvn/guide -->
-        <repository>
-            <id>aliyun-public</id>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>aliyun-public</id>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

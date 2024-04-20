@@ -23,7 +23,7 @@ server:
 spring:
   profiles:
     # maven启用的profile，默认是local
-    active: test
+    active: dev
   task:
     execution:
       pool:
