@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("favoritesService")
 public class FavoritesServiceImpl extends ServiceImpl<FavoritesMapper, FavoritesEntity> implements FavoritesService {
 

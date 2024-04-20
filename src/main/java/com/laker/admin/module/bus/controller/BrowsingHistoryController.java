@@ -13,16 +13,18 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+
+
 /**
  * 业务_浏览记录表
  *
  * @author johnny
  * @email johnny@gmail.com
- * @date 2024-04-20 12:23:28
+ * @date 2024-04-20 16:40:03
  */
+@Api(tags = "业务_浏览记录表")
 @RestController
-@Api(tags = "业务_浏览记录")
-@RequestMapping("bus/browsinghistory")
+@RequestMapping("module.bus/browsinghistory")
 public class BrowsingHistoryController {
     @Autowired
     private BrowsingHistoryService browsingHistoryService;
@@ -32,7 +34,7 @@ public class BrowsingHistoryController {
      */
     @ApiOperation(value = "列表")
     @GetMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@RequestParam Map<String, Object> params){
         PageUtils page = browsingHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -42,10 +44,10 @@ public class BrowsingHistoryController {
     /**
      * 信息
      */
-    @ApiOperation(value = "单个信息")
+    @ApiOperation(value = "根据单个id获取信息")
     @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        BrowsingHistoryEntity browsingHistory = browsingHistoryService.getById(id);
+    public R info(@PathVariable("id") Long id){
+		BrowsingHistoryEntity browsingHistory = browsingHistoryService.getById(id);
 
         return R.ok().put("browsingHistory", browsingHistory);
     }
@@ -55,8 +57,8 @@ public class BrowsingHistoryController {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public R save(@RequestBody BrowsingHistoryEntity browsingHistory) {
-        browsingHistoryService.save(browsingHistory);
+    public R save(@RequestBody BrowsingHistoryEntity browsingHistory){
+		browsingHistoryService.save(browsingHistory);
 
         return R.ok();
     }
@@ -66,8 +68,8 @@ public class BrowsingHistoryController {
      */
     @ApiOperation(value = "修改")
     @PostMapping("/update")
-    public R update(@RequestBody BrowsingHistoryEntity browsingHistory) {
-        browsingHistoryService.updateById(browsingHistory);
+    public R update(@RequestBody BrowsingHistoryEntity browsingHistory){
+		browsingHistoryService.updateById(browsingHistory);
 
         return R.ok();
     }
@@ -77,8 +79,8 @@ public class BrowsingHistoryController {
      */
     @ApiOperation(value = "删除")
     @DeleteMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        browsingHistoryService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids){
+		browsingHistoryService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

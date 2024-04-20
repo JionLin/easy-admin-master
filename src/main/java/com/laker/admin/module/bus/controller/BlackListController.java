@@ -13,16 +13,18 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+
+
 /**
  * 业务表_黑名单
  *
  * @author johnny
  * @email johnny@gmail.com
- * @date 2024-04-20 12:23:28
+ * @date 2024-04-20 16:40:02
  */
-@RestController
 @Api(tags = "业务表_黑名单")
-@RequestMapping("bus/blacklist")
+@RestController
+@RequestMapping("module.bus/blacklist")
 public class BlackListController {
     @Autowired
     private BlackListService blackListService;
@@ -32,7 +34,7 @@ public class BlackListController {
      */
     @ApiOperation(value = "列表")
     @GetMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@RequestParam Map<String, Object> params){
         PageUtils page = blackListService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -42,10 +44,10 @@ public class BlackListController {
     /**
      * 信息
      */
-    @ApiOperation(value = "单个查询")
+    @ApiOperation(value = "根据单个id获取信息")
     @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        BlackListEntity blackList = blackListService.getById(id);
+    public R info(@PathVariable("id") Long id){
+		BlackListEntity blackList = blackListService.getById(id);
 
         return R.ok().put("blackList", blackList);
     }
@@ -55,8 +57,8 @@ public class BlackListController {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public R save(@RequestBody BlackListEntity blackList) {
-        blackListService.save(blackList);
+    public R save(@RequestBody BlackListEntity blackList){
+		blackListService.save(blackList);
 
         return R.ok();
     }
@@ -66,8 +68,8 @@ public class BlackListController {
      */
     @ApiOperation(value = "修改")
     @PostMapping("/update")
-    public R update(@RequestBody BlackListEntity blackList) {
-        blackListService.updateById(blackList);
+    public R update(@RequestBody BlackListEntity blackList){
+		blackListService.updateById(blackList);
 
         return R.ok();
     }
@@ -77,8 +79,8 @@ public class BlackListController {
      */
     @ApiOperation(value = "删除")
     @DeleteMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        blackListService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids){
+		blackListService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("pivacyService")
 public class PivacyServiceImpl extends ServiceImpl<PivacyMapper, PivacyEntity> implements PivacyService {
 

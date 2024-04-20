@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.laker.admin.module.bus.mapper.SubscriptionMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.laker.admin.module.bus.entity.SubscriptionEntity" id="subscriptionMap">
+        <result property="id" column="id"/>
+        <result property="collId" column="coll_id"/>
+        <result property="collName" column="coll_name"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="creator" column="creator"/>
+        <result property="updater" column="updater"/>
+    </resultMap>
+
+
+</mapper>

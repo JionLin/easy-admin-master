@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("medalService")
 public class MedalServiceImpl extends ServiceImpl<MedalMapper, MedalEntity> implements MedalService {
 

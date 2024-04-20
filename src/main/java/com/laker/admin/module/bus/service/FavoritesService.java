@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author johnny
  * @email johnny@gmail.com
- * @date 2024-04-20 12:23:28
+ * @date 2024-04-20 16:25:39
  */
 public interface FavoritesService extends IService<FavoritesEntity> {
 

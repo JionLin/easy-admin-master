@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("subscriptionService")
 public class SubscriptionServiceImpl extends ServiceImpl<SubscriptionMapper, SubscriptionEntity> implements SubscriptionService {
 
