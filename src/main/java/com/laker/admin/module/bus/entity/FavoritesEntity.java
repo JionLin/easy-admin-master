@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 业务_我的收藏
@@ -17,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @TableName("bus_favorites")
-public class FavoritesEntity implements Serializable {
+public class FavoritesEntity extends Base implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,21 +37,6 @@ public class FavoritesEntity implements Serializable {
 
 	 */
 	private String isDeleted;
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
-	/**
-	 * 修改时间
-	 */
-	private Date updateTime;
-	/**
-	 * 创建人
-	 */
-	private Long creator;
-	/**
-	 * 更新人
-	 */
-	private Long updater;
+
 
 }

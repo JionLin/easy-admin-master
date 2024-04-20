@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 业务表_隐私设置
@@ -17,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @TableName("bus_pivacy")
-public class PivacyEntity implements Serializable {
+public class PivacyEntity  extends Base implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -37,21 +36,6 @@ public class PivacyEntity implements Serializable {
 	 * 0-删除 1-未删除
 	 */
 	private String isDeleted;
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
-	/**
-	 * 修改时间
-	 */
-	private Date updateTime;
-	/**
-	 * 创建人
-	 */
-	private Long creator;
-	/**
-	 * 更新人
-	 */
-	private Long updater;
+
 
 }
