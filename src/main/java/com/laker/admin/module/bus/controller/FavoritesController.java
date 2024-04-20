@@ -13,20 +13,18 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+
+
 /**
  * 业务_我的收藏
- *  需要改动的地方
- *  1。 class 加 @Api(tags = "业务_我的收藏") ok
- *  2. 改动请求 postmapper ok
- *  3.方法上面加上  @ApiOperation(value = "") ok
- *  4. 删除导入类 3个 ok
+ *
  * @author johnny
  * @email johnny@gmail.com
- * @date 2024-04-20 12:23:28
+ * @date 2024-04-20 16:40:02
  */
 @Api(tags = "业务_我的收藏")
 @RestController
-@RequestMapping("bus/favorites")
+@RequestMapping("module.bus/favorites")
 public class FavoritesController {
     @Autowired
     private FavoritesService favoritesService;
@@ -36,7 +34,7 @@ public class FavoritesController {
      */
     @ApiOperation(value = "列表")
     @GetMapping("/list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@RequestParam Map<String, Object> params){
         PageUtils page = favoritesService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -46,10 +44,10 @@ public class FavoritesController {
     /**
      * 信息
      */
-    @ApiOperation(value = "信息")
+    @ApiOperation(value = "根据单个id获取信息")
     @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id) {
-        FavoritesEntity favorites = favoritesService.getById(id);
+    public R info(@PathVariable("id") Long id){
+		FavoritesEntity favorites = favoritesService.getById(id);
 
         return R.ok().put("favorites", favorites);
     }
@@ -59,8 +57,8 @@ public class FavoritesController {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public R save(@RequestBody FavoritesEntity favorites) {
-        favoritesService.save(favorites);
+    public R save(@RequestBody FavoritesEntity favorites){
+		favoritesService.save(favorites);
 
         return R.ok();
     }
@@ -70,8 +68,8 @@ public class FavoritesController {
      */
     @ApiOperation(value = "修改")
     @PostMapping("/update")
-    public R update(@RequestBody FavoritesEntity favorites) {
-        favoritesService.updateById(favorites);
+    public R update(@RequestBody FavoritesEntity favorites){
+		favoritesService.updateById(favorites);
 
         return R.ok();
     }
@@ -81,8 +79,8 @@ public class FavoritesController {
      */
     @ApiOperation(value = "删除")
     @DeleteMapping("/delete")
-    public R delete(@RequestBody Long[] ids) {
-        favoritesService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids){
+		favoritesService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
