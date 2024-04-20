@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,11 +16,13 @@ import java.util.Map;
 @Service("blackListService")
 public class BlackListServiceImpl extends ServiceImpl<BlackListMapper, BlackListEntity> implements BlackListService {
 
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        long userId = StpUtil.getLoginIdAsLong();
         IPage<BlackListEntity> page = this.page(
                 new Query<BlackListEntity>().getPage(params),
-                new QueryWrapper<BlackListEntity>()
+                new QueryWrapper<BlackListEntity>().eq("creator",userId)
         );
 
         return new PageUtils(page);

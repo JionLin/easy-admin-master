@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "业务_我的收藏")
 @RestController
-@RequestMapping("module.bus/favorites")
+@RequestMapping("/favorites")
 public class FavoritesController {
     @Autowired
     private FavoritesService favoritesService;
@@ -32,7 +32,7 @@ public class FavoritesController {
     /**
      * 列表
      */
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "列表,page(页数 默认为1),limit(一页显示的数量 默认为10)")
     @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = favoritesService.queryPage(params);

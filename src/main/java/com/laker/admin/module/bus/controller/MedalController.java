@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "业务表_勋章表")
 @RestController
-@RequestMapping("module.bus/medal")
+@RequestMapping("/medal")
 public class MedalController {
     @Autowired
     private MedalService medalService;
@@ -32,7 +32,7 @@ public class MedalController {
     /**
      * 列表
      */
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "列表,page(页数 默认为1),limit(一页显示的数量 默认为10)")
     @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = medalService.queryPage(params);

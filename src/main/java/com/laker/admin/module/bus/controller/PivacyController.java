@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "业务表_隐私设置")
 @RestController
-@RequestMapping("module.bus/pivacy")
+@RequestMapping("/pivacy")
 public class PivacyController {
     @Autowired
     private PivacyService pivacyService;
@@ -32,7 +32,7 @@ public class PivacyController {
     /**
      * 列表
      */
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "列表,page(页数 默认为1),limit(一页显示的数量 默认为10)")
     @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = pivacyService.queryPage(params);

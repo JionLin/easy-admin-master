@@ -3,6 +3,7 @@ package com.laker.admin.module.bus.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -18,7 +19,8 @@ import java.util.Date;
  */
 @Data
 @TableName("bus_browsing_history")
-public class BrowsingHistoryEntity implements Serializable {
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+public class BrowsingHistoryEntity  extends  Base  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 

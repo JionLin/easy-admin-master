@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Api(tags = "业务_浏览记录表")
 @RestController
-@RequestMapping("module.bus/browsinghistory")
+@RequestMapping("/browsinghistory")
 public class BrowsingHistoryController {
     @Autowired
     private BrowsingHistoryService browsingHistoryService;
@@ -32,7 +32,7 @@ public class BrowsingHistoryController {
     /**
      * 列表
      */
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "列表,page(页数 默认为1),limit(一页显示的数量 默认为10)")
     @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = browsingHistoryService.queryPage(params);

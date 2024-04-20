@@ -2,7 +2,9 @@ package com.laker.admin.module.bus.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -18,7 +20,8 @@ import java.util.Date;
  */
 @Data
 @TableName("bus_subscription")
-public class SubscriptionEntity implements Serializable {
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
+public class SubscriptionEntity  extends  Base implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
@@ -45,6 +48,7 @@ public class SubscriptionEntity implements Serializable {
 	 * 0-删除 1-未删除
 	 */
 	@ApiModelProperty(value = "0-删除 1-未删除")
+	@TableLogic
 	private String isDeleted;
 
 	/**

@@ -1,7 +1,6 @@
 package com.laker.admin.utils;
 
-import com.laker.admin.framework.ext.mybatis.UserInfoAndPowers;
-import com.laker.admin.framework.utils.EasyAdminSecurityUtils;
+import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.Base;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,14 @@ public class UserAndDateUtil {
 
 
     // 创建的时候,获取当前用户的用户id 和创建时间以及修改时间
+
+    /**
+     *  // UserInfoAndPowers currentUserInfo = EasyAdminSecurityUtils.getCurrentUserInfo();
+     *   // Long userId = currentUserInfo.getUserId();
+     * @param base
+     */
     public static void setCreateUserInfoAndDate(Base base) {
-        UserInfoAndPowers currentUserInfo = EasyAdminSecurityUtils.getCurrentUserInfo();
-        Long userId = currentUserInfo.getUserId();
+        Long userId = StpUtil.getLoginIdAsLong();
         base.setUpdater(userId);
         base.setCreator(userId);
         base.setCreateTime(new Date());
@@ -29,8 +33,7 @@ public class UserAndDateUtil {
 
     // 修改的时候,获取当前用户的修改时间和修改人,都使用userId
     public static void setUpdateUserInfoAndDate(Base base) {
-        UserInfoAndPowers currentUserInfo = EasyAdminSecurityUtils.getCurrentUserInfo();
-        Long userId = currentUserInfo.getUserId();
+        Long userId = StpUtil.getLoginIdAsLong();
         base.setUpdater(userId);
         base.setUpdateTime(new Date());
     }

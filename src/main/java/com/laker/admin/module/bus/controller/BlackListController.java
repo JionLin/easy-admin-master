@@ -4,6 +4,7 @@ import com.laker.admin.module.bus.entity.BlackListEntity;
 import com.laker.admin.module.bus.service.BlackListService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
+import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 @Api(tags = "业务表_黑名单")
 @RestController
-@RequestMapping("module.bus/blacklist")
+@RequestMapping("/blacklist")
 public class BlackListController {
     @Autowired
     private BlackListService blackListService;
@@ -32,11 +33,10 @@ public class BlackListController {
     /**
      * 列表
      */
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "列表,page(页数 默认为1-非必传),limit(一页显示的数量 默认为10-非必传)")
     @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = blackListService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -58,6 +58,7 @@ public class BlackListController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody BlackListEntity blackList){
+        UserAndDateUtil.setCreateUserInfoAndDate(blackList);
 		blackListService.save(blackList);
 
         return R.ok();
@@ -69,6 +70,7 @@ public class BlackListController {
     @ApiOperation(value = "修改")
     @PostMapping("/update")
     public R update(@RequestBody BlackListEntity blackList){
+        UserAndDateUtil.setUpdateUserInfoAndDate(blackList);
 		blackListService.updateById(blackList);
 
         return R.ok();
