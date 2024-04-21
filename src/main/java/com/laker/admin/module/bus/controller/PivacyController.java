@@ -1,9 +1,11 @@
 package com.laker.admin.module.bus.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.PivacyEntity;
 import com.laker.admin.module.bus.service.PivacyService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
+import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,7 @@ public class PivacyController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody PivacyEntity pivacy){
+        UserAndDateUtil.setCreateUserInfoAndDate(pivacy);
 		pivacyService.save(pivacy);
 
         return R.ok();
@@ -69,6 +72,8 @@ public class PivacyController {
     @ApiOperation(value = "修改")
     @PostMapping("/update")
     public R update(@RequestBody PivacyEntity pivacy){
+        pivacy.setCreator(StpUtil.getLoginIdAsLong());
+        UserAndDateUtil.setUpdateUserInfoAndDate(pivacy);
 		pivacyService.updateById(pivacy);
 
         return R.ok();
@@ -78,7 +83,7 @@ public class PivacyController {
      * 删除
      */
     @ApiOperation(value = "删除")
-    @DeleteMapping("/delete")
+    // @DeleteMapping("/delete")
     public R delete(@RequestBody Long[] ids){
 		pivacyService.removeByIds(Arrays.asList(ids));
 

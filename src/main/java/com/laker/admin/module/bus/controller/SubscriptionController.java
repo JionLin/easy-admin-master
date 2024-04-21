@@ -1,9 +1,11 @@
 package com.laker.admin.module.bus.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.SubscriptionEntity;
 import com.laker.admin.module.bus.service.SubscriptionService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
+import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,7 @@ public class SubscriptionController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody SubscriptionEntity subscription){
+        UserAndDateUtil.setCreateUserInfoAndDate(subscription);
 		subscriptionService.save(subscription);
 
         return R.ok();
@@ -69,6 +72,8 @@ public class SubscriptionController {
     @ApiOperation(value = "修改")
     @PostMapping("/update")
     public R update(@RequestBody SubscriptionEntity subscription){
+        subscription.setCreator(StpUtil.getLoginIdAsLong());
+        UserAndDateUtil.setUpdateUserInfoAndDate(subscription);
 		subscriptionService.updateById(subscription);
 
         return R.ok();

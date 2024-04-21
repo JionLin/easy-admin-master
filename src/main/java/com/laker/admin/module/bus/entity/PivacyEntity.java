@@ -2,7 +2,6 @@ package com.laker.admin.module.bus.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
@@ -44,12 +43,7 @@ public class PivacyEntity  extends  Base implements Serializable {
 	@ApiModelProperty(value = "我的订阅 0-隐藏 1-公开,默认公开 ")
 	private String mySubscription;
 
-	/**
-	 * 0-删除 1-未删除
-	 */
-	@ApiModelProperty(value = "0-删除 1-未删除")
-	@TableLogic
-	private String isDeleted;
+
 
 	/**
 	 * 创建时间

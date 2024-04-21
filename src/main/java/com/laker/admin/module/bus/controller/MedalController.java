@@ -1,9 +1,11 @@
 package com.laker.admin.module.bus.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.MedalEntity;
 import com.laker.admin.module.bus.service.MedalService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
+import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,7 @@ public class MedalController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody MedalEntity medal){
+        UserAndDateUtil.setCreateUserInfoAndDate(medal);
 		medalService.save(medal);
 
         return R.ok();
@@ -69,6 +72,8 @@ public class MedalController {
     @ApiOperation(value = "修改")
     @PostMapping("/update")
     public R update(@RequestBody MedalEntity medal){
+        medal.setCreator(StpUtil.getLoginIdAsLong());
+        UserAndDateUtil.setUpdateUserInfoAndDate(medal);
 		medalService.updateById(medal);
 
         return R.ok();
