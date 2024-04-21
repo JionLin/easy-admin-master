@@ -8,8 +8,10 @@
         <result property="id" column="id"/>
         <result property="collId" column="coll_id"/>
         <result property="collName" column="coll_name"/>
+        <result property="collCover" column="coll_cover"/>
         <result property="submissionId" column="submission_id"/>
         <result property="submissionName" column="submission_name"/>
+        <result property="submissionCover" column="submission_cover"/>
         <result property="isDeleted" column="is_deleted"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>

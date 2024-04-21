@@ -45,6 +45,13 @@ public class BrowsingHistoryEntity  extends  Base  implements Serializable {
 	private String collName;
 
 	/**
+	 * 合集封面
+
+	 */
+	@ApiModelProperty(value = "合集封面 ")
+	private String collCover;
+
+	/**
 	 * 稿件id
 	 */
 	@ApiModelProperty(value = "稿件id")
@@ -55,6 +62,12 @@ public class BrowsingHistoryEntity  extends  Base  implements Serializable {
 	 */
 	@ApiModelProperty(value = "稿件名称")
 	private String submissionName;
+
+	/**
+	 * 稿件封面
+	 */
+	@ApiModelProperty(value = "稿件封面")
+	private String submissionCover;
 
 	/**
 	 * 字典状态

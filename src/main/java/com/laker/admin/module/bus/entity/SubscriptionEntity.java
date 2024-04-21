@@ -43,6 +43,11 @@ public class SubscriptionEntity  extends  Base implements Serializable {
 	 */
 	@ApiModelProperty(value = "合集名字")
 	private String collName;
+	/**
+	 * 合集封面
+	 */
+	@ApiModelProperty(value = "合集封面")
+	private String collCover;
 
 	/**
 	 * 0-删除 1-未删除

@@ -35,14 +35,17 @@ public class FavoritesEntity  extends  Base implements Serializable {
 	/**
 	 * 单话作品名字
 	 */
-	@ApiModelProperty(value = "单话作品名字")
-	private String oneShotName;
+	@ApiModelProperty(value = "合集名字")
+	private String collName;
 
 	/**
 	 * 单话作品id
 	 */
-	@ApiModelProperty(value = "单话作品id")
-	private Long oneShotId;
+	@ApiModelProperty(value = "合集id")
+	private Long collId;
+
+	@ApiModelProperty(value = "合集封面")
+	private String collCover;
 
 	/**
 	 * 0-删除 1-未删除

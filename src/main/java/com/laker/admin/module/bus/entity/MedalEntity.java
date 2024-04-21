@@ -35,22 +35,14 @@ public class MedalEntity  extends  Base implements Serializable {
 	/**
 	 * 勋章数量
 	 */
-	@ApiModelProperty(value = "勋章获取数量")
+	@ApiModelProperty(value = "勋章获取获取数量-粉丝数")
 	private Long quantity;
-
-
-	/**
-	 * 勋章数量
-	 */
-	@ApiModelProperty(value = "勋章总数量")
-	private Long totalQuantity;
-
 
 
 	/**
 	 * 名称
 	 */
-	@ApiModelProperty(value = "名称")
+	@ApiModelProperty(value = "名称-粉丝等级")
 	private String name;
 
 	/**
@@ -83,5 +75,7 @@ public class MedalEntity  extends  Base implements Serializable {
 	 */
 	@ApiModelProperty(value = "更新人")
 	private Long updater;
+
+	// TODO 获取粉丝数和勋章名称
 
 }
