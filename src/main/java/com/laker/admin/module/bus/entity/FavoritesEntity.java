@@ -48,7 +48,7 @@ public class FavoritesEntity  extends  Base implements Serializable {
 	 * 0-删除 1-未删除
 
 	 */
-	@ApiModelProperty(value = "0-删除 1-未删除 ")
+	@ApiModelProperty(value = "0-未删除 1-删除 ")
 	@TableLogic
 	private String isDeleted;
 

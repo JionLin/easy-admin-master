@@ -4,6 +4,7 @@ import com.laker.admin.module.bus.entity.FavoritesEntity;
 import com.laker.admin.module.bus.service.FavoritesService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
+import com.laker.admin.utils.UserAndDateUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class FavoritesController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody FavoritesEntity favorites){
+        UserAndDateUtil.setCreateUserInfoAndDate(favorites);
 		favoritesService.save(favorites);
 
         return R.ok();
