@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,9 +18,10 @@ public class BrowsingHistoryServiceImpl extends ServiceImpl<BrowsingHistoryMappe
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        long userId = StpUtil.getLoginIdAsLong();
         IPage<BrowsingHistoryEntity> page = this.page(
                 new Query<BrowsingHistoryEntity>().getPage(params),
-                new QueryWrapper<BrowsingHistoryEntity>()
+                new QueryWrapper<BrowsingHistoryEntity>().eq("creator",userId)
         );
 
         return new PageUtils(page);

@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,9 +18,10 @@ public class FavoritesServiceImpl extends ServiceImpl<FavoritesMapper, Favorites
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        long userId = StpUtil.getLoginIdAsLong();
         IPage<FavoritesEntity> page = this.page(
                 new Query<FavoritesEntity>().getPage(params),
-                new QueryWrapper<FavoritesEntity>()
+                new QueryWrapper<FavoritesEntity>().eq("creator",userId)
         );
 
         return new PageUtils(page);

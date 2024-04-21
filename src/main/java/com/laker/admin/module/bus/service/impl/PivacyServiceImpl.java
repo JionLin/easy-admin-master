@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,9 +18,10 @@ public class PivacyServiceImpl extends ServiceImpl<PivacyMapper, PivacyEntity> i
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        long userId = StpUtil.getLoginIdAsLong();
         IPage<PivacyEntity> page = this.page(
                 new Query<PivacyEntity>().getPage(params),
-                new QueryWrapper<PivacyEntity>()
+                new QueryWrapper<PivacyEntity>().eq("creator",userId)
         );
 
         return new PageUtils(page);
