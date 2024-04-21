@@ -1,6 +1,6 @@
 package com.laker.admin.module.bus.mapper;
 
-import com.laker.admin.module.bus.entity.PivacyEntity;
+import com.laker.admin.module.bus.entity.PrivacyEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2024-04-20 16:25:39
  */
 @Mapper
-public interface PivacyMapper extends BaseMapper<PivacyEntity> {
+public interface PrivacyMapper extends BaseMapper<PrivacyEntity> {
 	
 }

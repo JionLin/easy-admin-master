@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.laker.admin.module.bus.mapper.PivacyMapper">
+<mapper namespace="com.laker.admin.module.bus.mapper.PrivacyMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.laker.admin.module.bus.entity.PivacyEntity" id="pivacyMap">
+    <resultMap type="com.laker.admin.module.bus.entity.PrivacyEntity" id="privacyMap">
         <result property="id" column="id"/>
         <result property="myFavorites" column="my_favorites"/>
         <result property="mySubscription" column="my_subscription"/>
-        <result property="isDeleted" column="is_deleted"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="creator" column="creator"/>
