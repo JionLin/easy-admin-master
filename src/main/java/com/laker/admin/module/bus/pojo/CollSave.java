@@ -33,7 +33,7 @@ public class CollSave {
     @ApiModelProperty(value = "状态 10-待发布 11-已发布 12-审核中 13-未通过 默认待发布")
     private String status = CollStatusEnum.PENDING_RELEASE_STATUS.getCode();
 
-    @ApiModelProperty(value = "是否删除 1未删除")
+    @ApiModelProperty(value = "是否删除 0未删除 ")
     private String isDeleted = CommonConstant.NOT_DELETED;
 
 }

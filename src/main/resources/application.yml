@@ -45,8 +45,8 @@ mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
   global-config:
     db-config:
-      logic-delete-field: 1 #删除
-      logic-not-delete-value: 0 # 未删除
+      logic-delete-field: 1 #默认删除
+      logic-not-delete-value: 0 # 默认未删除
 knife4j:
   # 开启增强
   enable: true

@@ -29,6 +29,6 @@ public class CollUpdate {
     @ApiModelProperty(value = "简介")
     private String introduction;
 
-    @ApiModelProperty(value = "是否删除 1未删除 0 删除")
+    @ApiModelProperty(value = "是否删除 0未删除 1 删除")
     private String isDeleted ;
 }

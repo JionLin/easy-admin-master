@@ -40,7 +40,7 @@ public class CollCommentVo {
     @ApiModelProperty(value = "合集名字")
     private String collName;
 
-    @ApiModelProperty(value = "是否删除 0-删除 1-不删除")
+    @ApiModelProperty(value = "是否删除 1-删除 0-不删除")
     private String isDeleted;
 
 

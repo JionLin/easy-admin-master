@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.pojo;
 
+import com.laker.admin.constant.CommonConstant;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -34,7 +35,7 @@ public class CollCommentSave {
     @NotNull
     private String collName;
 
-    @ApiModelProperty(value = "是否删除 0-删除 1- 未删除")
-    private String isDeleted = "1";
+    @ApiModelProperty(value = "是否删除 1-删除 0- 未删除")
+    private String isDeleted = CommonConstant.NOT_DELETED;
 
 }

@@ -31,7 +31,7 @@ public class SubmissionCommentSave {
     @ApiModelProperty(value = "所属稿件名称")
     private String submissionName;
 
-    @ApiModelProperty(value = "是否删除 0-删除 1-未删除")
+    @ApiModelProperty(value = "是否删除 0-未删除 1-删除")
     private String isDeleted= CommonConstant.NOT_DELETED;
 
 }

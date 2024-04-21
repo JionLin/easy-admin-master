@@ -36,7 +36,7 @@ public class SubmissionSave {
     private String status = SubmissionStatusEnum.PUBLISHED_STATUS.getCode();
 
 
-    @ApiModelProperty(value = "是否删除 0-删除 1- 未删除")
+    @ApiModelProperty(value = "是否删除 0-未删除 1- 删除")
     private String isDeleted = CommonConstant.NOT_DELETED;
 
 

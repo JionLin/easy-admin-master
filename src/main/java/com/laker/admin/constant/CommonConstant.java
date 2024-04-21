@@ -8,10 +8,10 @@ package com.laker.admin.constant;
  */
 public interface CommonConstant {
 
-    // 已删除 Deleted
-    String DELETED = "0";
-    // 未删除
-    String NOT_DELETED = "1";
+    // 默认已删除 ,对应plus配置
+    String DELETED = "1";
+    // 默认未删除
+    String NOT_DELETED = "0";
 
 
 }

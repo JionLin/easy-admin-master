@@ -34,8 +34,9 @@ public class BlackListEntity extends Base implements Serializable {
 
     /**
      * 解除限制 0-解除(删除)-不可以查看  1-未解除(不删除) 可以查看
+     * 0- 默认不删除 1-删除
      */
-    @ApiModelProperty(value = "解除限制 0-解除(删除)-不可以查看  1-未解除(不删除) 可以查看 ")
+    @ApiModelProperty(value = "解除限制 0-未解除(不删除) 可以查看  1-解除(删除)-不可以查看 ")
     @TableLogic
     private String isDeleted;
 

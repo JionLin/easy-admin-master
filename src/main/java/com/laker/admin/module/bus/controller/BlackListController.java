@@ -1,5 +1,6 @@
 package com.laker.admin.module.bus.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.BlackListEntity;
 import com.laker.admin.module.bus.service.BlackListService;
 import com.laker.admin.utils.PageUtils;
@@ -70,6 +71,7 @@ public class BlackListController {
     @ApiOperation(value = "修改")
     @PostMapping("/update")
     public R update(@RequestBody BlackListEntity blackList){
+        blackList.setCreator(StpUtil.getLoginIdAsLong());
         UserAndDateUtil.setUpdateUserInfoAndDate(blackList);
 		blackListService.updateById(blackList);
 

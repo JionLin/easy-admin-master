@@ -34,7 +34,7 @@ public class BusSubmissionItem {
     private String status;
 
 
-    @ApiModelProperty(value = "是否删除 0-删除 1- 未删除")
+    @ApiModelProperty(value = "是否删除 1-删除 0- 未删除")
     private String isDeleted;
 
     @ApiModelProperty(value = "稿件图片列表")
