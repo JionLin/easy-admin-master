@@ -13,12 +13,16 @@ public class UserDto {
     private Integer sex;
     @ApiModelProperty(value = "关键字")
     private String keyword;
+    @ApiModelProperty(value = "签名")
+    private String signature;
+    @ApiModelProperty(value = "头像")
     private String avatar;
 
     public <T> QueryWrapper<T> queryWrapper() {
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(StringUtils.isNotEmpty(nickName), "nick_name", nickName);
         queryWrapper.eq(sex != null, "sex", sex);
+        queryWrapper.eq(signature != null, "signature", signature);
         queryWrapper.and(StringUtils.isNotEmpty(keyword),
                 likeQueryWrapper -> likeQueryWrapper.like("user_name", keyword)
                         .or().like("nick_name", keyword));

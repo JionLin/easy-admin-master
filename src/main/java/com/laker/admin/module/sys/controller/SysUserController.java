@@ -23,7 +23,10 @@ import com.laker.admin.module.sys.pojo.UserDto;
 import com.laker.admin.module.sys.service.ISysRoleService;
 import com.laker.admin.module.sys.service.ISysUserRoleService;
 import com.laker.admin.module.sys.service.ISysUserService;
+import com.laker.admin.utils.R;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +57,8 @@ public class SysUserController {
     ISysUserRoleService sysUserRoleService;
     @Autowired
     LakerConfig lakerConfig;
+
+
 
     @GetMapping
     @ApiOperation(value = "分页查询")
@@ -147,7 +152,7 @@ public class SysUserController {
 
 
     @PutMapping("/updatePwd")
-    @ApiOperation(value = "更新用户密码")
+    @ApiOperation(value = "更新用户密码-使用这个")
     @SaCheckPermission("user.update.pwd")
     public Response updatePwd(@RequestBody PwdQo param) {
 
@@ -168,8 +173,8 @@ public class SysUserController {
         return Response.ok();
     }
 
-    @PutMapping("/resetPwd/{userId}")
-    @ApiOperation(value = "更新用户密码")
+    // @PutMapping("/resetPwd/{userId}")
+    @ApiOperation(value = "更新用户密码 - 不需要")
     @SaCheckPermission("user.reset.pwd")
     public Response resetPwd(@PathVariable Long userId) {
         SysUser user = new SysUser();
@@ -180,13 +185,13 @@ public class SysUserController {
     }
 
     @PutMapping("/updateAvatar")
-    @ApiOperation(value = "更新用户头像")
-    @SaCheckPermission("user.updateAvatar")
+    @ApiOperation(value = "更新用户头像/性别/昵称/签名")
+    // @SaCheckPermission("user.updateAvatar")
     public Response resetPwd(@RequestBody UserDto userDto) {
         long userId = StpUtil.getLoginIdAsLong();
         SysUser user = new SysUser();
-        user.setAvatar(userDto.getAvatar());
         user.setUserId(userId);
+        BeanUtils.copyProperties(userDto,user);
         sysUserService.updateById(user);
         return Response.ok();
     }
@@ -228,5 +233,31 @@ public class SysUserController {
         return Response.ok(sysUserService.removeByIds(CollUtil.toList(ids)));
     }
 
-    // TODO 更换手机号
+    @ApiModelProperty("修改密码-发送手机验证码")
+    @GetMapping("/sendPhoneCode")
+    public R sendPhoneCode(){
+        // 获取当前用户id 和手机号码
+        SysUser user = sysUserService.getById(StpUtil.getLoginIdAsLong());
+        String phone = user.getPhone();
+
+        // TODO 晚点
+        // 生成短信验证码
+
+        return null;
+
+
+    }
+
+
+    // TODO 更换手机号 用户id 原手机号 验证码 新手机号
+    @PutMapping("/updatePhone")
+    @ApiOperation(value = "更新手机号码")
+    public Response updatePhone(@RequestBody UserDto userDto) {
+        long userId = StpUtil.getLoginIdAsLong();
+        SysUser user = new SysUser();
+        user.setUserId(userId);
+        BeanUtils.copyProperties(userDto,user);
+        sysUserService.updateById(user);
+        return Response.ok();
+    }
 }

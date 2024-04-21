@@ -14,4 +14,9 @@ public interface CommonConstant {
     String NOT_DELETED = "0";
 
 
+    /**
+     * 发送手机号码前缀
+     */
+    String SEND_PHONE_PREFIX="send_phone_code_";
+
 }
