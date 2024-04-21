@@ -3,6 +3,8 @@ package com.laker.admin.module.bus.controller;
 import cn.dev33.satoken.stp.StpUtil;
 import com.laker.admin.module.bus.entity.BlackListEntity;
 import com.laker.admin.module.bus.service.BlackListService;
+import com.laker.admin.module.sys.entity.SysUser;
+import com.laker.admin.module.sys.service.ISysUserService;
 import com.laker.admin.utils.PageUtils;
 import com.laker.admin.utils.R;
 import com.laker.admin.utils.UserAndDateUtil;
@@ -30,6 +32,9 @@ import java.util.Map;
 public class BlackListController {
     @Autowired
     private BlackListService blackListService;
+
+    @Autowired
+    ISysUserService sysUserService;
 
     /**
      * 列表
@@ -59,6 +64,13 @@ public class BlackListController {
     @ApiOperation(value = "保存")
     @PostMapping("/save")
     public R save(@RequestBody BlackListEntity blackList){
+        // 进行校验 黑名单id
+        Long blockUserId = blackList.getBlockUserId();
+        SysUser user = sysUserService.getById(blockUserId);
+        if (user==null){
+            return R.error("黑名单用户不存在");
+        }
+        blackList.setBlockUserName(user.getNickName());
         UserAndDateUtil.setCreateUserInfoAndDate(blackList);
 		blackListService.save(blackList);
 

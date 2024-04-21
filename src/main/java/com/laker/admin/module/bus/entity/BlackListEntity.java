@@ -43,7 +43,7 @@ public class BlackListEntity extends Base implements Serializable {
     /**
      * 屏蔽用户id
      */
-    @ApiModelProperty(value = "屏蔽用户id")
+    @ApiModelProperty(value = "屏蔽用户id 对应用户信息的主建id")
     private Long blockUserId;
 
     /**
