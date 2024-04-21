@@ -21,7 +21,7 @@ public class BrowsingHistoryServiceImpl extends ServiceImpl<BrowsingHistoryMappe
         long userId = StpUtil.getLoginIdAsLong();
         IPage<BrowsingHistoryEntity> page = this.page(
                 new Query<BrowsingHistoryEntity>().getPage(params),
-                new QueryWrapper<BrowsingHistoryEntity>().eq("creator",userId)
+                new QueryWrapper<BrowsingHistoryEntity>().eq("creator",userId).orderByDesc("create_time")
         );
 
         return new PageUtils(page);
